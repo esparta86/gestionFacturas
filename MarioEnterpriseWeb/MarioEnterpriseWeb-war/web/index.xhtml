@@ -1,0 +1,120 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        <title>Busqueda Factura</title>
+    </h:head>
+    <h:body>
+        <div  class="ui-fluid">
+            <h:outputLabel id="leeCookie" rendered="false">
+                No tiene permisos sobre la opcion
+            </h:outputLabel>
+
+            <p:panel id="panel" rendered="true" styleClass="titulo">
+                <f:facet name="header">
+                    <h:outputText value="Busqueda de Facturas" />
+                </f:facet>
+                <h:form id="FrmSearchFactura">
+                    <p:outputPanel id="mainSearch">
+                        <p:panelGrid  columns="2"  layout="grid" styleClass="ui-panelgrid-blank" 
+                                      columnClasses="ui-grid-col-2,ui-grid-col-10"
+                                      >
+                            <p:selectBooleanCheckbox itemLabel="¿Busqueda Historicos?" id="ReprogramarCheck"
+                                                     value="#{busquedaFacturaController.busquedaHistoricos}">
+                                <p:ajax event="change" update="FrmSearchFactura:mainSearch"></p:ajax>
+                            </p:selectBooleanCheckbox>  
+
+                        </p:panelGrid>
+                        <p:panelGrid rendered="#{busquedaFacturaController.busquedaHistoricos}"  columns="5"  layout="grid" styleClass="ui-panelgrid-blank" 
+                                     columnClasses="ui-grid-col-1,ui-grid-col-2,ui-grid-col-1,ui-grid-col-2,ui-grid-col-1"
+                                     >
+                            <p:outputLabel value="Fecha Inicial"></p:outputLabel>
+                            <p:calendar id="fecha1CalendarODS" value="#{busquedaFacturaController.fechaHistoricoI}"  
+                                        pattern="dd/MM/yyyy" mask="true"  locale="es">
+                            </p:calendar>
+                            <p:outputLabel value="Fecha Final"></p:outputLabel>
+                            <p:calendar id="fecha2CalendarODS" value="#{busquedaFacturaController.fechaHistoricoF}"  
+                                        pattern="dd/MM/yyyy" mask="true"  locale="es">
+                            </p:calendar>
+                            <p:commandButton id="btnBuscar" icon="ui-icon-search" value="Buscar..." >
+                            </p:commandButton>
+
+
+                        </p:panelGrid>
+                        <p:panelGrid columns="4" layout="grid" styleClass="ui-panelgrid-blank" columnClasses="ui-grid-col-8,ui-grid-col-2,ui-grid-col-2,ui-grid-col-1">
+                            <p:outputLabel></p:outputLabel>
+                            <p:selectOneMenu id="criterioOneMenu" value="#{busquedaFacturaController.criterioSeleccionado.idCriterio}" 
+                                             autoWidth="false"
+                                             required="true"
+                                             requiredMessage="El campo Motivo es requerido.">
+                                <f:selectItem  itemLabel="Seleccione..." noSelectionOption="true" ></f:selectItem>
+                                <f:selectItems value="#{busquedaFacturaController.listaCriteriosFacturas}" var="criterio" 
+                                               itemLabel="#{criterio.idCriterio} - #{criterio.nombreCriterio}" itemValue="#{criterio.idCriterio}"></f:selectItems>
+                            </p:selectOneMenu>
+                            <p:inputText></p:inputText>
+                            <p:commandButton id="btnBuscarTable" icon="ui-icon-search" value="Buscar..." >
+                            </p:commandButton>
+                            
+                        </p:panelGrid>
+
+                        <p:dataTable  id="programacionDataTableODS"
+                                      value="#{busquedaFacturaController.listaFacturas}"
+                                      paginator="true" rows="15" 
+                                      emptyMessage="No se han encontrado registros"
+                                      widgetVar="facturasDataTableODS"
+                                      var="factura"
+                                      style="padding-top: 10px"
+                                      paginatorAlwaysVisible="false" 
+                                      reflow="true"  paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                      rowsPerPageTemplate="15,25,50">
+                            <f:facet name="header" >
+                                <p:panelGrid columns="1" layout="grid" columnClasses="ui-grid-col-12" styleClass="ui-panelgrid-blank"  >
+                                    <h:outputText value="Lista de Facturas" styleClass="encabezadoPanel"></h:outputText>
+                                </p:panelGrid>
+
+                            </f:facet>
+                            <p:column headerText="Codigo Factura" width="10%" filterBy="#{factura.codigoFactura}"  filterMatchMode="contains"  >
+                                <h:outputText value="#{factura.codigoFactura}">
+                                    
+                                </h:outputText>
+                            </p:column>
+                            <p:column headerText="Descripcion" width="20%" filterBy="#{factura.descripcionFactura}"  filterMatchMode="contains" >
+                                <h:outputText value="#{factura.descripcionFactura}">
+                                    
+                                </h:outputText>
+                            </p:column>
+                            <p:column headerText="Qty" width="10%"  >
+                                <h:outputText value="#{factura.qty}">
+                                    
+                                </h:outputText>
+                            </p:column>
+                            <p:column headerText="precio" width="10%"  >
+                                <h:outputText value="#{factura.precio}">
+                                    
+                                </h:outputText>
+                            </p:column>
+                            <p:column headerText="archivo" width="10%"  >
+                                <h:outputText value="#{factura.archivo}">
+                                    
+                                </h:outputText>
+                            </p:column>
+
+                        </p:dataTable>
+
+                    </p:outputPanel>
+
+
+
+
+                </h:form>
+
+            </p:panel>
+        </div>
+    </h:body>
+</html>
+
