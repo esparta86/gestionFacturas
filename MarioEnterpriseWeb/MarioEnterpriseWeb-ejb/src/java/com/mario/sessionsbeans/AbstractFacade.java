@@ -53,8 +53,7 @@ public abstract class AbstractFacade
   public abstract Object parseResultSetToClass(ResultSet paramResultSet)
     throws Exception;
   
-  public abstract Object parseResultSetToClass(ResultSet paramResultSet, String paramString)
-    throws Exception;
+ 
   
   protected Object[] parseResultSetToObjectMatrix(ResultSet rs)
     throws Exception

@@ -37,12 +37,7 @@ public class UsuarioFacade extends AbstractFacade {
     }
 
     @Override
-    public Object parseResultSetToClass(ResultSet paramResultSet) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List<Usuario> parseResultSetToClass(ResultSet paramResultSet, String paramString) throws Exception {
+    public List<Usuario> parseResultSetToClass(ResultSet paramResultSet) throws Exception {
         List<Usuario> listaUsuarios = new ArrayList<Usuario>();
         try {
             while (paramResultSet.next()) {
@@ -57,5 +52,22 @@ public class UsuarioFacade extends AbstractFacade {
             throw new Exception(e.getMessage());
         }
         return listaUsuarios;
+    }
+
+    public Usuario getUsuario(String usuarioString, ConexionPosgresql paramConexionPosgresql) throws Exception {
+        List<Usuario> resultado;
+        ResultSet resultSet;
+        String query = "SELECT * FROM USUARIO WHERE USUARIO = ?";
+
+        resultSet = paramConexionPosgresql.executeQueryPS(query, new Object[]{usuarioString != null ? usuarioString.trim() : ""});
+        resultado = parseResultSetToClass(resultSet);
+
+        if (paramConexionPosgresql.isError()) {
+            throw new Exception(paramConexionPosgresql.getMensaje() + " \nSQL: " + query);
+        }
+
+        return resultado != null ? resultado.get(0) : null;
+
+
     }
 }
