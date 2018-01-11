@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Acceso Web</title>
+    </h:head>
+    <h:body>
+        <div  class="ui-fluid">
+            <p:panel id="panel" rendered="true" styleClass="titulo">
+                <f:facet name="header">
+                    <h:outputText value="Acceso" />
+                </f:facet>
+                <h:form id="FrmLogging">
+                    <p:messages autoUpdate="true" showIcon="true" globalOnly="true"></p:messages>
+                    <p:outputPanel id="mainSearch">
+                        <p:panelGrid columns="2" layout="grid" styleClass="ui-panelgrid-blank" 
+                                     columnClasses="ui-grid-col-8,ui-grid-col-4"
+                                     >
+                            <p:panelGrid  columns="4"  layout="grid" styleClass="ui-panelgrid-blank" 
+                                          columnClasses="ui-grid-col-6,ui-grid-col-2,ui-grid-col-2,ui-grid-col-4"
+                                          style="padding-top: 100px"
+                                          >
+                                <p:outputLabel></p:outputLabel>
+                                <p:outputLabel value="USUARIO :"></p:outputLabel>
+                                <p:inputText value="#{accesoEnterpriseWebController.usuario}"></p:inputText>
+                                <p:outputLabel></p:outputLabel>
+
+
+                                <p:outputLabel></p:outputLabel>
+                                <p:outputLabel value="PASSWORD :"></p:outputLabel>
+                                <p:inputText value="#{accesoEnterpriseWebController.password}"></p:inputText>
+                                <p:outputLabel></p:outputLabel>
+
+                            </p:panelGrid>
+                            <h:graphicImage  styleClass="reprogramar" name="image/marioMain.PNG" ></h:graphicImage>
+
+                        </p:panelGrid>
+                        <p:panelGrid style="padding-top: 20px"  columns="2"  layout="grid" styleClass="ui-panelgrid-blank" 
+                                     columnClasses="ui-grid-col-5,ui-grid-col-2,ui-grid-col-4"
+                                     >
+                            <p:outputLabel></p:outputLabel>
+                            <p:commandButton value="LOGIN ..." process="@form"
+                                             actionListener="#{accesoEnterpriseWebController.logearUsuario()}"></p:commandButton>
+
+                        </p:panelGrid>
+                    </p:outputPanel>
+
+                </h:form>
+            </p:panel>
+
+
+        </div>
+    </h:body>
+</html>
+

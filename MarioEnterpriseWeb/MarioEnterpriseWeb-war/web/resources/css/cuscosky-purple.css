@@ -1,0 +1,60 @@
+/* 
+	Cusco Sky table styles
+	written by Braulio Soncco http://www.buayacorp.com
+*/
+table.cuscosky-purple, table.cuscosky-purple th,table.cuscosky-purple td {
+    border: 1px solid #DED4EE;
+    border-collapse: collapse;
+    font-family: "Trebuchet MS", Arial, sans-serif;
+    color: #555;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: small;
+}
+
+table.cuscosky-purple caption {
+    font-size: 150%;
+    font-weight: bold;
+    margin: 5px;
+}
+
+table.cuscosky-purple td,table.cuscosky-purple th {
+    padding: 4px;
+}
+
+table.cuscosky-purple thead th {
+    text-align: center;
+    background: #ECE6F5;
+    color: #714FA3;
+    font-size: 100% !important;
+}
+
+table.cuscosky-purple tbody th {
+    font-weight: bold;
+}
+
+table.cuscosky-purple tbody tr { background: #FDFCFE; }
+
+tbody tr.odd { background: #F9F7FC; }
+
+table.cuscosky-purple a:link {
+    color: #9271BE;
+    text-decoration: none;
+}
+
+table.cuscosky-purple a:visited {
+    color: #9271BE;
+    text-decoration: none;
+}
+
+table.cuscosky-purple a:hover {
+    color: #9271BE;
+    text-decoration: underline !important;
+}
+
+table.cuscosky-purple tfoot th, table.cuscosky-purple tfoot td {
+    font-weight: bold;
+    background: #ECE6F5;
+    text-align: center;
+}
+

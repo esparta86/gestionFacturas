@@ -1,0 +1,29 @@
+/* 
+    Document   : alineado
+    Created on : 09-03-2015, 05:27:10 PM
+    Author     : gfclaros
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+.fila {
+    padding:0px;
+    margin:0px;
+    height:18px;
+}
+.columnaDerecha {
+    float:right;
+    width:140px;
+    height:100%;
+}
+.columnaIzquierda {
+    width:100%;
+    height:100%;
+    text-align: left;
+}
+.columnaCentro {
+    width:100%;
+    height:100%;
+    text-align-last: center;
+}
+
