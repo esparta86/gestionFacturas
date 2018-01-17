@@ -4,13 +4,14 @@
  */
 package com.mario.dao.entities;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  *
  * @author Esparta_86
  */
-public class Usuario {
+public class Usuario implements Serializable{
     
     private String usuario;
     private String password;

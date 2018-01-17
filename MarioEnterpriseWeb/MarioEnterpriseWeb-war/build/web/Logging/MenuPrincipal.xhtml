@@ -21,20 +21,24 @@
                     </p:panelGrid>
                    
                 </f:facet>
+                <h:form id="FrmMenu">
                  <p:panelGrid  columns="6"  layout="grid" styleClass="ui-panelgrid-blank" 
                                       columnClasses="ui-grid-col-2,ui-grid-col-2,ui-grid-col-2,ui-grid-col-2"
                                       >
                      <p:outputLabel></p:outputLabel>
+                     <h:commandLink  action="#{menuPrincipalController.redirectGestionFacturas()}">
                      <h:graphicImage  styleClass="reprogramar" name="image/invoiceRemoved.png"
                                       value="Deshabilitar  tus Facturas" 
                                       height="100px" width="100px" alt="Deshabilitar  tus Facturas"
                                       title="Deshabilitar  tus Facturas"></h:graphicImage>
+                     </h:commandLink>
                      
                      <h:graphicImage   name="image/invoice.png"
                                       value="Gestion Facturas" 
                                       height="100px" width="100px" alt="Gestionar tus Facturas"
                                       title="Gestionar tus Facturas"></h:graphicImage>
                  </p:panelGrid>
+                </h:form>
             </p:panel>
         </div>
     </h:body>
