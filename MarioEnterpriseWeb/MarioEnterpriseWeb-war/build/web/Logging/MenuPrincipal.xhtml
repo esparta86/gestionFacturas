@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Menu Principal</title>
+    </h:head>
+    <f:event listener="#{menuPrincipalController.checkAlreadyLoggedInSystem()}" type="preRenderView"></f:event>
+    <h:body>
+        <div  class="ui-fluid">
+            <p:panel id="panel" rendered="#{menuPrincipalController.usuarioLogeado}" styleClass="titulo">
+                <f:facet name="header">
+                    <p:panelGrid  columns="2"  layout="grid" styleClass="ui-panelgrid-blank" 
+                                      columnClasses="ui-grid-col-10,ui-grid-col-2"
+                        >
+                         <h:outputText value="MENU PRINCIPAL, BIENVENIDO :#{menuPrincipalController.accesoEnterpriseWebController.usuarioLogeado}" />
+                         <h:outputText value="Salir del sistema"></h:outputText>
+                                          
+                    </p:panelGrid>
+                   
+                </f:facet>
+                 <p:panelGrid  columns="6"  layout="grid" styleClass="ui-panelgrid-blank" 
+                                      columnClasses="ui-grid-col-2,ui-grid-col-2,ui-grid-col-2,ui-grid-col-2"
+                                      >
+                     <p:outputLabel></p:outputLabel>
+                     <h:graphicImage  styleClass="reprogramar" name="image/invoiceRemoved.png"
+                                      value="Deshabilitar  tus Facturas" 
+                                      height="100px" width="100px" alt="Deshabilitar  tus Facturas"
+                                      title="Deshabilitar  tus Facturas"></h:graphicImage>
+                     
+                     <h:graphicImage   name="image/invoice.png"
+                                      value="Gestion Facturas" 
+                                      height="100px" width="100px" alt="Gestionar tus Facturas"
+                                      title="Gestionar tus Facturas"></h:graphicImage>
+                 </p:panelGrid>
+            </p:panel>
+        </div>
+    </h:body>
+</html>
+

@@ -4,6 +4,8 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/Esparta_86/Documents/NetBeansProjects/MARIO/gestionFacturas/MarioEnterpriseWeb/MarioEnterpriseWeb-war/web/index.xhtml</file>
+            <file>file:/C:/Users/Esparta_86/Documents/NetBeansProjects/MARIO/gestionFacturas/MarioEnterpriseWeb/MarioEnterpriseWeb-war/web/Logging/MenuPrincipal.xhtml</file>
+            <file>file:/C:/Users/Esparta_86/Documents/NetBeansProjects/MARIO/gestionFacturas/MarioEnterpriseWeb/MarioEnterpriseWeb-war/src/java/com/mario/login/controller/MenuPrincipalController.java</file>
             <file>file:/C:/Users/Esparta_86/Documents/NetBeansProjects/MARIO/gestionFacturas/MarioEnterpriseWeb/MarioEnterpriseWeb-war/src/java/com/mario/facturas/consulta/controller/BusquedaFacturaController.java</file>
             <file>file:/C:/Users/Esparta_86/Documents/NetBeansProjects/MARIO/gestionFacturas/MarioEnterpriseWeb/MarioEnterpriseWeb-war/src/java/com/mario/login/controller/AccesoEnterpriseWebController.java</file>
             <file>file:/C:/Users/Esparta_86/Documents/NetBeansProjects/MARIO/gestionFacturas/MarioEnterpriseWeb/MarioEnterpriseWeb-war/web/Logging/accesoEnterpriseWeb.xhtml</file>

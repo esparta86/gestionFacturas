@@ -15,6 +15,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
 /**
@@ -32,6 +33,10 @@ public class AccesoEnterpriseWebController implements Serializable {
     private String usuarioLogeado;
 
     public AccesoEnterpriseWebController() {
+    usuario = "";
+    password = "";
+    usuarioLogeado="";
+    
     }
 
     @PostConstruct
@@ -51,9 +56,13 @@ public class AccesoEnterpriseWebController implements Serializable {
                 if (usuarioDB != null) {
                     setUsuarioLogeado(usuarioDB.getUsuario());
                     FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Credenciales correctas", "Usuario correcto"));
+                    ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+                    ec.redirect(ec.getRequestContextPath() + "/Logging/MenuPrincipal.xhtml");
                 } else {
                     usuario = "";
                     password = "";
+                    FacesContext.getCurrentInstance().addMessage(null, 
+                            new FacesMessage(FacesMessage.SEVERITY_ERROR, "Credenciales incorrectas", "Ingrese un usuario/password validos"));
                 }
             }
         } catch (Exception e) {
@@ -66,9 +75,6 @@ public class AccesoEnterpriseWebController implements Serializable {
                     new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", msj));
         }
     }
-    
-    
-    
 
     /**
      * @return the usuario

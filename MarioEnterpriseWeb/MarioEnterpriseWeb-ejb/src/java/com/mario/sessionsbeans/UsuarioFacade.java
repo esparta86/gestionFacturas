@@ -66,7 +66,7 @@ public class UsuarioFacade extends AbstractFacade {
             throw new Exception(paramConexionPosgresql.getMensaje() + " \nSQL: " + query);
         }
 
-        return resultado != null ? resultado.get(0) : null;
+        return !resultado.isEmpty() ? resultado.get(0) : null;
 
 
     }
