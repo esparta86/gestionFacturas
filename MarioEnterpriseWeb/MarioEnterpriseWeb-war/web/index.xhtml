@@ -10,11 +10,11 @@
     </h:head>
     <h:body>
         <div  class="ui-fluid">
-            <h:outputLabel id="leeCookie" rendered="false">
-                No tiene permisos sobre la opcion
+            <h:outputLabel id="leeCookie" rendered="#{!busquedaFacturaController.usuarioLogeado}">
+                USUARIO SIN ACCESO
             </h:outputLabel>
 
-            <p:panel id="panel" rendered="true" styleClass="titulo">
+            <p:panel id="panel" rendered="#{busquedaFacturaController.usuarioLogeado}" styleClass="titulo">
                 <f:facet name="header">
                     <h:outputText value="Busqueda de Facturas" />
                 </f:facet>

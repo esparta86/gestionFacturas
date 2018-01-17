@@ -13,6 +13,7 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
@@ -21,13 +22,14 @@ import javax.faces.context.FacesContext;
  * @author rcolocho
  */
 @ManagedBean(name = "accesoEnterpriseWebController")
-@ViewScoped
+@SessionScoped
 public class AccesoEnterpriseWebController implements Serializable {
 
     @EJB
     private UsuarioFacadeJDBC usuarioFacadeJDBC;
     private String usuario;
     private String password;
+    private String usuarioLogeado;
 
     public AccesoEnterpriseWebController() {
     }
@@ -37,19 +39,26 @@ public class AccesoEnterpriseWebController implements Serializable {
 
         usuario = "";
         password = "";
+        setUsuarioLogeado("");
     }
 
     public void logearUsuario() {
         try {
-            if(usuario.trim().compareTo("") == 0 || password.trim().compareTo("") == 0){
+            if (usuario.trim().compareTo("") == 0 || password.trim().compareTo("") == 0) {
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Credenciales incompletas", "Ingrese completamente los campos: USUARIO y PASSWORD"));
-            }else{
+            } else {
                 Usuario usuarioDB = usuarioFacadeJDBC.obtenerUsuario(usuario, "MARIO");
-                if(usuarioDB != null){
+                if (usuarioDB != null) {
+                    setUsuarioLogeado(usuarioDB.getUsuario());
                     FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Credenciales correctas", "Usuario correcto"));
+                } else {
+                    usuario = "";
+                    password = "";
                 }
             }
         } catch (Exception e) {
+            usuario = "";
+            password = "";
             StringWriter sw = new StringWriter();
             e.printStackTrace(new PrintWriter(sw));
             String msj = e.getMessage() != null ? e.getMessage() : sw.toString();
@@ -57,6 +66,9 @@ public class AccesoEnterpriseWebController implements Serializable {
                     new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", msj));
         }
     }
+    
+    
+    
 
     /**
      * @return the usuario
@@ -84,5 +96,19 @@ public class AccesoEnterpriseWebController implements Serializable {
      */
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    /**
+     * @return the usuarioLogeado
+     */
+    public String getUsuarioLogeado() {
+        return usuarioLogeado;
+    }
+
+    /**
+     * @param usuarioLogeado the usuarioLogeado to set
+     */
+    public void setUsuarioLogeado(String usuarioLogeado) {
+        this.usuarioLogeado = usuarioLogeado;
     }
 }
