@@ -8,6 +8,7 @@ package com.mario.dao.entities;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+import javax.persistence.Transient;
 
 /**
  *
@@ -22,6 +23,11 @@ public class FacturaBackord  implements Serializable{
     private Date fechaImportac;
     private Character estado;
     private BigDecimal totalFactura;
+    
+    @Transient
+    private Boolean estadoB;
+    @Transient
+    private String nombreTienda;
 
     /**
      * @return the numeroFactura
@@ -91,6 +97,34 @@ public class FacturaBackord  implements Serializable{
      */
     public void setTotalFactura(BigDecimal totalFactura) {
         this.totalFactura = totalFactura;
+    }
+
+    /**
+     * @return the estadoB
+     */
+    public Boolean getEstadoB() {
+        return estadoB;
+    }
+
+    /**
+     * @param estadoB the estadoB to set
+     */
+    public void setEstadoB(Boolean estadoB) {
+        this.estadoB = estadoB;
+    }
+
+    /**
+     * @return the nombreTienda
+     */
+    public String getNombreTienda() {
+        return nombreTienda;
+    }
+
+    /**
+     * @param nombreTienda the nombreTienda to set
+     */
+    public void setNombreTienda(String nombreTienda) {
+        this.nombreTienda = nombreTienda;
     }
     
     

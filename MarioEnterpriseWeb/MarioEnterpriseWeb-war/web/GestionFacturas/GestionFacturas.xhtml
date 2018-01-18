@@ -10,32 +10,53 @@
     <f:event listener="#{gestionFacturasController.checkAlreadyLoggedInSystem()}" type="preRenderView"></f:event>
     <h:body>
         <div  class="ui-fluid">
-            <p:panel id="panel" rendered="#{gestionFacturasController.usuarioLogeado}" styleClass="titulo">
-                <f:facet name="header">
-                    <p:panelGrid  columns="2"  layout="grid" styleClass="ui-panelgrid-blank" 
-                                  columnClasses="ui-grid-col-10,ui-grid-col-2"
-                                  >
-                        <h:outputText value="MENU PRINCIPAL, BIENVENIDO :#{gestionFacturasController.accesoEnterpriseWebController.usuarioLogeado}" />
-                        <h:outputText value="Salir del sistema"></h:outputText>
+            <h:form id="frmGestionFacturas">
+                <p:panel id="panel" rendered="#{gestionFacturasController.usuarioLogeado}" styleClass="titulo">
 
-                    </p:panelGrid>
+                    <f:facet name="header">
+                        <p:panelGrid  columns="3"  layout="grid" styleClass="ui-panelgrid-blank" 
+                                      columnClasses="ui-grid-col-9,ui-grid-col-1,ui-grid-col-2"
+                                      >
+                            <h:outputText value="MENU PRINCIPAL, BIENVENIDO :#{gestionFacturasController.accesoEnterpriseWebController.usuarioLogeado}" />
+                            <h:commandLink  action="#{gestionFacturasController.redirecHome()}">
+                                <h:graphicImage  styleClass="reprogramar" name="image/home.png"
+                                                 value="Deshabilitar  tus Facturas" 
+                                                 height="32px" width="32px"
+                                                 title="Menu Principal"></h:graphicImage>
+                            </h:commandLink>
+                            <h:outputText value="Salir del sistema"></h:outputText>
+
+                        </p:panelGrid>
+                    </f:facet>
+
+                    <p:growl id="msjFormGestion" showDetail="true" autoUpdate="true" life="800"/> 
                     <p:dataTable var="factura" value="#{gestionFacturasController.listaFacturas}">
-                        <p:column headerText="NUMERO FACTURA">
+                        <p:column headerText="NUMERO FACTURA" width="25%">
                             <h:outputText value="#{factura.numeroFactura}" />
                         </p:column>
-                        <p:column headerText="TIENDA">
-                            <h:outputText value="#{factura.tiendaID}" />
+                        <p:column headerText="TIENDA" width="30%">
+                            <h:outputText value="#{factura.tiendaID}-#{factura.nombreTienda}"  />
                         </p:column>
-                        <p:column headerText="FECHA DE CARGA">
+                        <p:column headerText="FECHA DE CARGA" width="25%" sortBy="#{factura.fechaImportac}">
                             <h:outputText value="#{factura.fechaImportac}" />
+                        </p:column>
+                        <p:column headerText="ESTADO" width="20%">
+                            <p:inputSwitch value="#{factura.estadoB}" offLabel="INACTIVA" onLabel="ACTIVA"
+                                           >
+                                <p:ajax listener="#{gestionFacturasController.actualizarEstadoFactura(factura)}"
+                                        update="frmGestionFacturas:msjFormGestion"  ></p:ajax>
+
+                            </p:inputSwitch>
                         </p:column>
 
 
 
                     </p:dataTable>
 
-                </f:facet>
-            </p:panel>
+
+
+                </p:panel>
+            </h:form>
         </div>
     </h:body>
 </html>

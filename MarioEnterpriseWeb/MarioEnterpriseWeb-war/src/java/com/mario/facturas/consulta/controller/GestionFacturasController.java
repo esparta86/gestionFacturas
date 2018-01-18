@@ -61,7 +61,24 @@ public class GestionFacturasController implements Serializable {
             ec.redirect(ec.getRequestContextPath() + "/Logging/accesoEnterpriseWeb.xhtml");
         }
     }
-
+    
+    public void actualizarEstadoFactura(FacturaBackord facturaSeleccionada){
+        try{
+            facturaSeleccionada.setEstado(facturaSeleccionada.getEstadoB() ? 'A':'I');
+            facturaBackordFacadeJDBC.actualizarEstadoFactura(facturaSeleccionada,"MARIO");
+            
+             FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_INFO, "Accion realizada","Estado de la Factura ha sido actualizado"));
+        }catch(Exception e){
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Accion no realizada", e.getMessage()));
+        }
+    }
+    
+    public void redirecHome() throws IOException{
+        ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+        ec.redirect(ec.getRequestContextPath()+"/Logging/MenuPrincipal.xhtml");
+    }
     /**
      * Creates a new instance of GestionFacturasController
      */
