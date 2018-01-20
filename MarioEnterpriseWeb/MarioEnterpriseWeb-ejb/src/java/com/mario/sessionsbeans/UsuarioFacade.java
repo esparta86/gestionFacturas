@@ -68,6 +68,41 @@ public class UsuarioFacade extends AbstractFacade {
 
         return !resultado.isEmpty() ? resultado.get(0) : null;
 
+    }
+
+    public Usuario getUsuarioValidacion(String usuarioString, String password, ConexionPosgresql paramConexionPosgresql) throws Exception {
+        List<Usuario> resultado;
+        ResultSet resultSet;
+        String query = "SELECT * FROM USUARIO WHERE USUARIO=? and MD5(?) = password;";
+
+        resultSet = paramConexionPosgresql.executeQueryPS(query,
+                new Object[]{usuarioString != null ? usuarioString.trim() : "",
+                    password != null ? password.trim() : ""});
+        resultado = parseResultSetToClass(resultSet);
+
+        if (paramConexionPosgresql.isError()) {
+            throw new Exception(paramConexionPosgresql.getMensaje() + " \nSQL: " + query);
+        }
+
+        return !resultado.isEmpty() ? resultado.get(0) : null;
 
     }
+
+    public List<Usuario> getUsuarios(ConexionPosgresql paramConexionPosgresql) throws Exception {
+        List<Usuario> resultado;
+        ResultSet resultSet;
+        String query = "SELECT * FROM USUARIO ORDER BY USUARIO";
+
+        resultSet = paramConexionPosgresql.executeQueryPS(query,
+                new Object[]{});
+        resultado = parseResultSetToClass(resultSet);
+
+        if (paramConexionPosgresql.isError()) {
+            throw new Exception(paramConexionPosgresql.getMensaje() + " \nSQL: " + query);
+        }
+
+        return resultado;
+
+    }
+
 }

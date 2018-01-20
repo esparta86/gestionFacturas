@@ -52,7 +52,7 @@ public class AccesoEnterpriseWebController implements Serializable {
             if (usuario.trim().compareTo("") == 0 || password.trim().compareTo("") == 0) {
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Credenciales incompletas", "Ingrese completamente los campos: USUARIO y PASSWORD"));
             } else {
-                Usuario usuarioDB = usuarioFacadeJDBC.obtenerUsuario(usuario, "MARIO");
+                Usuario usuarioDB = usuarioFacadeJDBC.obtenerUsuario(usuario, password,"MARIO");
                 if (usuarioDB != null) {
                     setUsuarioLogeado(usuarioDB.getUsuario());
                     FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Credenciales correctas", "Usuario correcto"));

@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml"
+       xmlns:h="http://java.sun.com/jsf/html"
+       xmlns:p="http://primefaces.org/ui"
+       xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <div  class="ui-fluid">
+            <h:form id="frmGestionUsuarios">
+                <p:panel id="panel" rendered="#{gestionUsuariosController.usuarioLogeado}" styleClass="titulo">
+
+                    <f:facet name="header">
+                        <p:panelGrid  columns="3"  layout="grid" styleClass="ui-panelgrid-blank" 
+                                      columnClasses="ui-grid-col-9,ui-grid-col-1,ui-grid-col-2"
+                                      >
+                            <h:outputText value="MENU PRINCIPAL, BIENVENIDO :#{gestionUsuariosController.accesoEnterpriseWebController.usuarioLogeado}" />
+                            <h:commandLink  action="#{gestionUsuariosController.redirecHome()}">
+                                <h:graphicImage  styleClass="reprogramar" name="image/home.png"
+                                                 value="Deshabilitar  tus Facturas" 
+                                                 height="32px" width="32px"
+                                                 title="Menu Principal"></h:graphicImage>
+                            </h:commandLink>
+                            <h:outputText value="Salir del sistema"></h:outputText>
+
+                        </p:panelGrid>
+                        <p:dataTable value="#{gestionUsuariosController.listaUsuarios}" var="usuario">
+                            <f:facet name="header">
+                                GESTION DE USUARIOS DEL SISTEMA
+                            </f:facet>
+
+                            <p:column headerText="USUARIO" width="25%">
+                                <h:outputText value="#{usuario.usuario}" />
+                            </p:column>
+                            <p:column headerText="ULTIMO USUARIO" width="25%">
+                                <h:outputText value="#{usuario.ultimoUsuario}" />
+                            </p:column>
+                            <p:column headerText="FUM" width="25%">
+                                <h:outputText value="#{usuario.fum}" />
+                            </p:column>
+
+                        </p:dataTable>
+
+
+                    </f:facet>
+
+                </p:panel>
+            </h:form>
+        </div>
+    </h:body>
+</html>
+

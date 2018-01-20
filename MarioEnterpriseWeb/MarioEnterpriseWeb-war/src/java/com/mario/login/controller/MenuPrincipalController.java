@@ -43,6 +43,11 @@ public class MenuPrincipalController {
         ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
         ec.redirect(ec.getRequestContextPath()+"/GestionFacturas/GestionFacturas.xhtml");
     }
+    
+    public void redirectGestionUsuarios() throws IOException{
+        ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+        ec.redirect(ec.getRequestContextPath()+"/GestionUsuarios/GestionUsuarios.xhtml");
+    }
 
     /**
      * Creates a new instance of MenuPrincipalController
