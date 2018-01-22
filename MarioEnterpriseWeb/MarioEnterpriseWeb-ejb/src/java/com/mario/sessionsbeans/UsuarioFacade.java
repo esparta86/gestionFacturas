@@ -18,7 +18,20 @@ public class UsuarioFacade extends AbstractFacade {
 
     @Override
     public void create(Object paramObject, ConexionPosgresql paramConexionPosgresql) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+          Usuario entidad = (Usuario)paramObject;
+          String query = "INSERT INTO USUARIO(USUARIO,PASSWORD,ULTIMO_USUARIO,FUM)"
+                  + " VALUES(?,MD5(?),?,?)";
+          paramConexionPosgresql.executeUpdatePS(query, new Object[]{
+              entidad.getUsuario(),
+              entidad.getPassword(),
+              entidad.getUltimoUsuario(),
+              entidad.getFum()
+          });
+          
+          if(paramConexionPosgresql.isError()){
+              throw new Exception(paramConexionPosgresql.getMensaje() + " \nSQL: " + query);
+          }
+          
     }
 
     @Override

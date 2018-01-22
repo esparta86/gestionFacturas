@@ -44,4 +44,21 @@ public class UsuarioFacadeJDBC extends AbstractFacadeJDBC {
             conexionPosgresql.cerrarConn();
         }
     }
+    
+     public void guardarUsuario(Usuario usuario,String empresa) throws Exception {
+        ConexionPosgresql conexionPosgresql = new ConexionPosgresql();
+        try {
+            conexionPosgresql.setConn(getJNDIConnection(empresa));
+            UsuarioFacade usuarioFacade = new UsuarioFacade();
+            usuarioFacade.create(usuario, conexionPosgresql);
+            conexionPosgresql.commit();
+        } catch (Exception e) {
+            conexionPosgresql.rollback();
+            e.printStackTrace();
+            throw new Exception(e.getMessage());
+        } finally {
+            conexionPosgresql.cerrarConn();
+        }
+    }
+     
 }

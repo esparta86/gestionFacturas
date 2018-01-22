@@ -10,7 +10,9 @@ import com.mario.login.controller.AccesoEnterpriseWebController;
 import com.mario.sessionsbeansJDBC.UsuarioFacadeJDBC;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.Serializable;
 import java.io.StringWriter;
+import java.util.Date;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -27,7 +29,7 @@ import javax.faces.context.FacesContext;
  */
 @ManagedBean(name = "gestionUsuariosController")
 @ViewScoped
-public class GestionUsuariosController {
+public class GestionUsuariosController implements Serializable{
 
     @EJB
     UsuarioFacadeJDBC usuarioFacadeJDBC;
@@ -37,6 +39,7 @@ public class GestionUsuariosController {
     private Boolean usuarioLogeado = Boolean.FALSE;
 
     private List<Usuario> listaUsuarios;
+    private Usuario usuarioNuevo;
 
     @PostConstruct
     public void init() {
@@ -44,6 +47,7 @@ public class GestionUsuariosController {
             if (getAccesoEnterpriseWebController().getUsuarioLogeado().trim().compareTo("") != 0) {
                 setUsuarioLogeado(Boolean.TRUE);
                 setListaUsuarios(usuarioFacadeJDBC.obtenerListaUsuarios("MARIO"));
+                setUsuarioNuevo(new Usuario());
             }
         } catch (Exception e) {
             StringWriter sw = new StringWriter();
@@ -52,6 +56,45 @@ public class GestionUsuariosController {
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", msj));
         }
+    }
+
+    public void guardarNuevoUsuario() {
+        try {
+            usuarioNuevo.setFum(new Date());
+            usuarioNuevo.setUltimoUsuario(getAccesoEnterpriseWebController().getUsuarioLogeado().trim());
+            if (validarDatos()) {
+                usuarioFacadeJDBC.guardarUsuario(usuarioNuevo, "MARIO");
+                setListaUsuarios(usuarioFacadeJDBC.obtenerListaUsuarios("MARIO"));
+                FacesContext.getCurrentInstance().addMessage(null,
+                        new FacesMessage(FacesMessage.SEVERITY_INFO, "Usuario Creado",
+                                "Usuario ha sido creado con exito"));
+
+            } else {
+                FacesContext.getCurrentInstance().addMessage(null,
+                        new FacesMessage(FacesMessage.SEVERITY_ERROR, "Datos Incompletos",
+                                "Ingrese un usuario y passoword"));
+            }
+
+        } catch (Exception e) {
+            StringWriter sw = new StringWriter();
+            e.printStackTrace(new PrintWriter(sw));
+            String msj = e.getMessage() != null ? e.getMessage() : sw.toString();
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Usuario no agregado", msj));
+        }
+    }
+
+    public Boolean validarDatos() {
+        if (usuarioNuevo.getUsuario() != null && usuarioNuevo.getPassword() != null) {
+            if (usuarioNuevo.getPassword().trim().compareTo("") == 0 || usuarioNuevo.getUsuario().trim().compareTo("") == 0) {
+                return false;
+            } else {
+                return true;
+            }
+        } else {
+            return false;
+        }
+
     }
 
     public void checkAlreadyLoggedInSystem() throws IOException {
@@ -113,6 +156,20 @@ public class GestionUsuariosController {
      */
     public void setListaUsuarios(List<Usuario> listaUsuarios) {
         this.listaUsuarios = listaUsuarios;
+    }
+
+    /**
+     * @return the usuarioNuevo
+     */
+    public Usuario getUsuarioNuevo() {
+        return usuarioNuevo;
+    }
+
+    /**
+     * @param usuarioNuevo the usuarioNuevo to set
+     */
+    public void setUsuarioNuevo(Usuario usuarioNuevo) {
+        this.usuarioNuevo = usuarioNuevo;
     }
 
 }
