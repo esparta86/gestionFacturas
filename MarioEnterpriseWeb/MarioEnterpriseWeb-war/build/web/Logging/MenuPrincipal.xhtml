@@ -10,43 +10,47 @@
     <f:event listener="#{menuPrincipalController.checkAlreadyLoggedInSystem()}" type="preRenderView"></f:event>
     <h:body>
         <div  class="ui-fluid">
-            <p:panel id="panel" rendered="#{menuPrincipalController.usuarioLogeado}" styleClass="titulo">
-                <f:facet name="header">
-                    <p:panelGrid  columns="2"  layout="grid" styleClass="ui-panelgrid-blank" 
+            <h:form id="FrmMenu">
+                <p:panel id="panel" rendered="#{menuPrincipalController.usuarioLogeado}" styleClass="titulo">
+                    <f:facet name="header">
+                        <p:panelGrid  columns="2"  layout="grid" styleClass="ui-panelgrid-blank" 
                                       columnClasses="ui-grid-col-10,ui-grid-col-2"
-                        >
-                         <h:outputText value="MENU PRINCIPAL, BIENVENIDO :#{menuPrincipalController.accesoEnterpriseWebController.usuarioLogeado}" />
-                         <h:outputText value="Salir del sistema"></h:outputText>
-                                          
-                    </p:panelGrid>
-                   
-                </f:facet>
-                <h:form id="FrmMenu">
-                 <p:panelGrid  columns="6"  layout="grid" styleClass="ui-panelgrid-blank" 
-                                      columnClasses="ui-grid-col-2,ui-grid-col-2,ui-grid-col-2,ui-grid-col-2"
                                       >
-                     <p:outputLabel></p:outputLabel>
-                     <h:commandLink  action="#{menuPrincipalController.redirectGestionFacturas()}">
-                     <h:graphicImage  styleClass="reprogramar" name="image/invoiceRemoved.png"
-                                      value="Deshabilitar  tus Facturas" 
-                                      height="100px" width="100px" alt="Deshabilitar  tus Facturas"
-                                      title="Deshabilitar  tus Facturas"></h:graphicImage>
-                     </h:commandLink>
-                     
-                     <h:graphicImage   name="image/invoice.png"
-                                      value="Gestion Facturas" 
-                                      height="100px" width="100px" alt="Gestionar tus Facturas"
-                                      title="Gestionar tus Facturas"></h:graphicImage>
-                     
-                     <h:commandLink  action="#{menuPrincipalController.redirectGestionUsuarios()}">
-                     <h:graphicImage  styleClass="reprogramar" name="image/addUser.png"
-                                      value="Gestion de Usuarios" 
-                                      height="100px" width="100px" alt="Gestion Usuarios del Sistema"
-                                      title="Gestion Usuarios del Sistema"></h:graphicImage>
-                     </h:commandLink>
-                 </p:panelGrid>
-                </h:form>
-            </p:panel>
+                            <h:outputText value="MENU PRINCIPAL, BIENVENIDO :#{menuPrincipalController.accesoEnterpriseWebController.usuarioLogeado}" />
+                            <p:commandButton value="Salir"
+                                             actionListener="#{menuPrincipalController.accesoEnterpriseWebController.invalidarSessionUsuario()}"
+                                             update="@form"></p:commandButton>
+
+                        </p:panelGrid>
+
+                    </f:facet>
+
+                    <p:panelGrid  columns="6"  layout="grid" styleClass="ui-panelgrid-blank" 
+                                  columnClasses="ui-grid-col-2,ui-grid-col-2,ui-grid-col-2,ui-grid-col-2"
+                                  >
+                        <p:outputLabel></p:outputLabel>
+                        <h:commandLink  action="#{menuPrincipalController.redirectGestionFacturas()}">
+                            <h:graphicImage  styleClass="reprogramar" name="image/invoiceRemoved.png"
+                                             value="Deshabilitar  tus Facturas" 
+                                             height="100px" width="100px" alt="Deshabilitar  tus Facturas"
+                                             title="Deshabilitar  tus Facturas"></h:graphicImage>
+                        </h:commandLink>
+
+                        <h:graphicImage   name="image/invoice.png"
+                                          value="Gestion Facturas" 
+                                          height="100px" width="100px" alt="Gestionar tus Facturas"
+                                          title="Gestionar tus Facturas"></h:graphicImage>
+
+                        <h:commandLink  action="#{menuPrincipalController.redirectGestionUsuarios()}">
+                            <h:graphicImage  styleClass="reprogramar" name="image/addUser.png"
+                                             value="Gestion de Usuarios" 
+                                             height="100px" width="100px" alt="Gestion Usuarios del Sistema"
+                                             title="Gestion Usuarios del Sistema"></h:graphicImage>
+                        </h:commandLink>
+                    </p:panelGrid>
+
+                </p:panel>
+            </h:form>
         </div>
     </h:body>
 </html>

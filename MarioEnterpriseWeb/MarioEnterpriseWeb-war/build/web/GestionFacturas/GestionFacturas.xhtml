@@ -24,7 +24,9 @@
                                                  height="32px" width="32px"
                                                  title="Menu Principal"></h:graphicImage>
                             </h:commandLink>
-                            <h:outputText value="Salir del sistema"></h:outputText>
+                            <p:commandButton value="Salir"
+                                             actionListener="#{gestionFacturasController.accesoEnterpriseWebController.invalidarSessionUsuario()}"
+                                             update="@form"></p:commandButton>
 
                         </p:panelGrid>
                     </f:facet>

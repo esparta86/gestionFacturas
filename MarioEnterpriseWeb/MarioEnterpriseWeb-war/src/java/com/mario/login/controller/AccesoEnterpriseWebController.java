@@ -17,6 +17,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  *
@@ -33,10 +34,10 @@ public class AccesoEnterpriseWebController implements Serializable {
     private String usuarioLogeado;
 
     public AccesoEnterpriseWebController() {
-    usuario = "";
-    password = "";
-    usuarioLogeado="";
-    
+        usuario = "";
+        password = "";
+        usuarioLogeado = "";
+
     }
 
     @PostConstruct
@@ -52,7 +53,7 @@ public class AccesoEnterpriseWebController implements Serializable {
             if (usuario.trim().compareTo("") == 0 || password.trim().compareTo("") == 0) {
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Credenciales incompletas", "Ingrese completamente los campos: USUARIO y PASSWORD"));
             } else {
-                Usuario usuarioDB = usuarioFacadeJDBC.obtenerUsuario(usuario, password,"MARIO");
+                Usuario usuarioDB = usuarioFacadeJDBC.obtenerUsuario(usuario, password, "MARIO");
                 if (usuarioDB != null) {
                     setUsuarioLogeado(usuarioDB.getUsuario());
                     FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Credenciales correctas", "Usuario correcto"));
@@ -61,7 +62,7 @@ public class AccesoEnterpriseWebController implements Serializable {
                 } else {
                     usuario = "";
                     password = "";
-                    FacesContext.getCurrentInstance().addMessage(null, 
+                    FacesContext.getCurrentInstance().addMessage(null,
                             new FacesMessage(FacesMessage.SEVERITY_ERROR, "Credenciales incorrectas", "Ingrese un usuario/password validos"));
                 }
             }
@@ -74,6 +75,22 @@ public class AccesoEnterpriseWebController implements Serializable {
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", msj));
         }
+    }
+
+    public void invalidarSessionUsuario() {
+        try {
+            this.usuario = "";
+            this.password = "";
+            this.usuarioLogeado = "";
+            ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+            String urlContext
+                    = ((HttpServletRequest) ec.getRequest()).getRequestURI();
+            ec.redirect(urlContext);
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     /**
