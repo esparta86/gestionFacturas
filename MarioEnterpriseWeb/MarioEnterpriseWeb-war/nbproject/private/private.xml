@@ -3,12 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Esparta_86/Documents/NetBeansProjects/MARIO/gestionFacturas/MarioEnterpriseWeb/MarioEnterpriseWeb-war/web/WEB-INF/web.xml</file>
-            <file>file:/C:/Users/Esparta_86/Documents/NetBeansProjects/MARIO/gestionFacturas/MarioEnterpriseWeb/MarioEnterpriseWeb-war/web/Logging/MenuPrincipal.xhtml</file>
-            <file>file:/C:/Users/Esparta_86/Documents/NetBeansProjects/MARIO/gestionFacturas/MarioEnterpriseWeb/MarioEnterpriseWeb-war/web/GestionFacturas/GestionFacturas.xhtml</file>
-            <file>file:/C:/Users/Esparta_86/Documents/NetBeansProjects/MARIO/gestionFacturas/MarioEnterpriseWeb/MarioEnterpriseWeb-war/src/java/com/mario/login/controller/AccesoEnterpriseWebController.java</file>
-            <file>file:/C:/Users/Esparta_86/Documents/NetBeansProjects/MARIO/gestionFacturas/MarioEnterpriseWeb/MarioEnterpriseWeb-war/src/java/com/mario/facturas/consulta/controller/GestionFacturasController.java</file>
-            <file>file:/C:/Users/Esparta_86/Documents/NetBeansProjects/MARIO/gestionFacturas/MarioEnterpriseWeb/MarioEnterpriseWeb-war/web/Logging/accesoEnterpriseWeb.xhtml</file>
+            <file>file:/C:/Users/Esparta_86/Documents/NetBeansProjects/MARIO/gestionFacturas2/MarioEnterpriseWeb/MarioEnterpriseWeb-war/src/java/com/davivienda/test/lecturaXMLController.java</file>
+            <file>file:/C:/Users/Esparta_86/Documents/NetBeansProjects/MARIO/gestionFacturas2/MarioEnterpriseWeb/MarioEnterpriseWeb-war/web/index.xhtml</file>
+            <file>file:/C:/Users/Esparta_86/Documents/NetBeansProjects/MARIO/gestionFacturas2/MarioEnterpriseWeb/MarioEnterpriseWeb-war/web/davivienda/lecturaXML.xhtml</file>
+            <file>file:/C:/Users/Esparta_86/Documents/NetBeansProjects/MARIO/gestionFacturas2/MarioEnterpriseWeb/MarioEnterpriseWeb-war/src/java/com/mario/facturas/consulta/controller/BusquedaFacturaController.java</file>
         </group>
     </open-files>
 </project-private>

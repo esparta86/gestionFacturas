@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <div  class="ui-fluid">
+            
+            <p:panel id="panel"  styleClass="titulo">
+                <f:facet name="header">
+                    <h:outputText value="Carga de xml" />
+                </f:facet>
+                <h:form id="Frmlecturaxml">
+                     <p:panelGrid  columns="3"  layout="grid" styleClass="ui-panelgrid-blank" 
+                                      columnClasses="ui-grid-col-2,ui-grid-col-7,ui-grid-col-3"
+                                      >
+                         <p:outputLabel value="XML"></p:outputLabel>
+                         <p:inputTextarea id="txtAreaXml" value="#{lecturaxmlcontroller.xmlPage}"></p:inputTextarea>
+                         <p:commandButton value="Cargar" actionListener="#{lecturaxmlcontroller.leerTextAreaAccion()}"
+                                          ></p:commandButton>
+                         
+                     </p:panelGrid>
+                </h:form>
+                
+            </p:panel>
+            
+            
+        </div>
+    </h:body>
+</html>
+
